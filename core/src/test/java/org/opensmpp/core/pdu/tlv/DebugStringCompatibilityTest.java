@@ -18,7 +18,7 @@ import org.smpp.util.ByteBuffer;
 public class DebugStringCompatibilityTest {
 
 	private TLV logica;
-	private Tlv<?,?> tlv;
+	private Tlv<?> tlv;
 
 	@Test
 	@Ignore
@@ -78,7 +78,7 @@ public class DebugStringCompatibilityTest {
 		assertDebugStringEquals(logica, tlv);
 	}
 
-	private void assertDebugStringEquals(TLV logica, Tlv<?,?> tlv) {
+	private void assertDebugStringEquals(TLV logica, Tlv<?> tlv) {
 		assertThat(tlv.toString()).isEqualTo(logica.debugString());
 	}
 }

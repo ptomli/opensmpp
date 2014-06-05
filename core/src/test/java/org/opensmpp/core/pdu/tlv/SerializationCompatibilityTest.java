@@ -15,7 +15,7 @@ public class SerializationCompatibilityTest {
 	@Test
 	public void testByte() throws Exception {
 		TLVByte logica = new TLVByte(Tags.DELIVERY_FAILURE_REASON.getTagId(), (byte) 0x01);
-		Tlv<Tag<Short>, Short> tlv = Tlv.of(Tags.DELIVERY_FAILURE_REASON, (short) 0x01);
+		Tlv<Short> tlv = Tlv.of(Tags.DELIVERY_FAILURE_REASON, (short) 0x01);
 
 		assertThat(tlv.toBytes()).isEqualTo(logica.getData().getBuffer());
 	}
@@ -23,14 +23,14 @@ public class SerializationCompatibilityTest {
 	@Test
 	public void testEmpty() throws Exception {
 		TLVEmpty logica = new TLVEmpty(Tags.ALERT_ON_MESSAGE_DELIVERY.getTagId(), true);
-		Tlv<Tag<Void>,Void> tlv = Tlv.of(Tags.ALERT_ON_MESSAGE_DELIVERY, null);
+		Tlv<Void> tlv = Tlv.of(Tags.ALERT_ON_MESSAGE_DELIVERY, null);
 		assertThat(tlv.toBytes()).isEqualTo(logica.getData().getBuffer());
 	}
 
 	@Test
 	public void testInteger() throws Exception {
 		TLVInt logica = new TLVInt(Tags.QOS_TIME_TO_LIVE.getTagId(), 1000);
-		Tlv<Tag<Integer>, Integer> tlv = Tlv.of(Tags.QOS_TIME_TO_LIVE, 1000);
+		Tlv<Integer> tlv = Tlv.of(Tags.QOS_TIME_TO_LIVE, 1000);
 		assertThat(tlv.toBytes()).isEqualTo(logica.getData().getBuffer());
 	}
 
@@ -38,7 +38,7 @@ public class SerializationCompatibilityTest {
 	public void testOctets() throws Exception {
 		ByteBuffer bb = new ByteBuffer(new byte[] { 0x01, 0x02, 0x03 });
 		TLVOctets logica = new TLVOctets(Tags.MESSAGE_PAYLOAD.getTagId(), bb);
-		Tlv<Tag<Byte[]>, Byte[]> tlv = Tlv.of(Tags.MESSAGE_PAYLOAD, new byte[] { 0x01, 0x02, 0x03 });
+		Tlv<Byte[]> tlv = Tlv.of(Tags.MESSAGE_PAYLOAD, new byte[] { 0x01, 0x02, 0x03 });
 		assertThat(tlv.toBytes()).isEqualTo(logica.getData().getBuffer());
 	}
 
