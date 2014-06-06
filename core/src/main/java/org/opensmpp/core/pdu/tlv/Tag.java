@@ -2,6 +2,10 @@ package org.opensmpp.core.pdu.tlv;
 
 public class Tag<V> {
 
+	public static interface Validator<V> {
+		boolean validate(V value);
+	}
+
 	public static <V> Tag<V> of(int id, Type<V> type) {
 		return new Tag<V>(id, type, null);
 	}
@@ -24,34 +28,30 @@ public class Tag<V> {
 		return id;
 	}
 	public Type<V> getValueType() {
-		return this.type;
+		return type;
 	}
 	public boolean validate(V value) {
-		return this.validator != null ? this.validator.validate(value) : true;
+		return validator != null ? validator.validate(value) : true;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Tag{id=%d, type=%s, validator=%s}", this.id, this.type, this.validator);
+		return String.format("Tag{id=%d, type=%s, validator=%s}", id, type, validator);
 	}
 
 	public String toString(V value) {
 		return new StringBuilder()
 			.append("(")
-			.append(this.type.getLabel())
+			.append(type.getLabel())
 			.append(": (tlv: ")
-			.append(this.id)
+			.append(id)
 			.append(") ")
-			.append(value == null ? "" : this.type.toString(value))
+			.append(value == null ? "" : type.toString(value))
 			.append(") ")
 			.toString();
 	}
 
 	public byte[] toBytes(V value) {
-		return this.type.serialize(value);
-	}
-
-	public static interface Validator<V> {
-		boolean validate(V value);
+		return type.serialize(value);
 	}
 }

@@ -593,11 +593,11 @@ public final class Tags {
 			this.max = max;
 		}
 		public boolean validate(T value) {
-			return value.compareTo(this.min) >= 0 && value.compareTo(this.max) <= 0;
+			return value.compareTo(min) >= 0 && value.compareTo(max) <= 0;
 		}
 		@Override
 		public String toString() {
-			return String.format("RangeValidator{min=%d, max=%d}", this.min, this.max);
+			return String.format("RangeValidator{min=%d, max=%d}", min, max);
 		}
 	}
 }

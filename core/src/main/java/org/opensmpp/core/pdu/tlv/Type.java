@@ -8,7 +8,7 @@ public abstract class Type<T> {
 	}
 
 	public String getLabel() {
-		return this.label;
+		return label;
 	}
 
 	public abstract byte[] serialize(T value);
